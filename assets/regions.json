@@ -1,0 +1,49 @@
+{
+    "version": 8,
+    "sources": {
+        "offline": {
+            "type": "vector",
+            "tiles": [
+                "http://172.16.16.112:8765/tiles/{z}/{x}/{y}.pbf"
+            ]
+        }
+    },
+    "glyphs": "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
+    "layers": [
+        {
+            "id": "bg",
+            "type": "background",
+            "paint": {
+                "background-color": "#000000"
+            }
+        },
+        {
+            "id": "water",
+            "type": "fill",
+            "source": "offline",
+            "source-layer": "water",
+            "paint": {
+                "fill-color": "#1e3a8a"
+            }
+        },
+        {
+            "id": "land",
+            "type": "fill",
+            "source": "offline",
+            "source-layer": "landcover",
+            "paint": {
+                "fill-color": "#1b3d24"
+            }
+        },
+        {
+            "id": "roads",
+            "type": "line",
+            "source": "offline",
+            "source-layer": "transportation",
+            "paint": {
+                "line-color": "#ffffff",
+                "line-width": 3
+            }
+        }
+    ]
+}

@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(flutter analyze:*)",
+      "Bash(flutter pub:*)",
+      "Bash(/Users/testuser/Documents/IdeaProjects/offlinemaps/lib/map/providers/base_tile_provider.dart )",
+      "Bash(/Users/testuser/Documents/IdeaProjects/offlinemaps/lib/map/providers/offline_asset_tile_provider.dart )",
+      "Bash(/Users/testuser/Documents/IdeaProjects/offlinemaps/lib/map/providers/mbtiles_tile_provider.dart )",
+      "Bash(/Users/testuser/Documents/IdeaProjects/offlinemaps/lib/map/services/map_source_service.dart )",
+      "Bash(/Users/testuser/Documents/IdeaProjects/offlinemaps/lib/screens/offline_raster_map_screen.dart )",
+      "Bash(/Users/testuser/Documents/IdeaProjects/offlinemaps/lib/map/offline_map.dart)",
+      "Bash(/Users/testuser/Documents/IdeaProjects/offlinemaps/lib/map/providers )",
+      "Bash(/Users/testuser/Documents/IdeaProjects/offlinemaps/lib/map/services)",
+      "Bash(sqlite3:*)",
+      "Bash(curl:*)"
+    ]
+  }
+}

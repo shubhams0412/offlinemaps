@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(tree:*)",
+      "Bash(cat:*)",
+      "Bash(flutter build:*)",
+      "Bash(flutter analyze:*)",
+      "Bash(sqlite3:*)",
+      "Bash(find:*)",
+      "Bash(xargs:*)",
+      "Bash(flutter pub get:*)",
+      "Bash(flutter clean:*)",
+      "Bash(curl:*)",
+      "Bash(java:*)",
+      "Bash(flutter run:*)",
+      "Bash(flutter devices:*)",
+      "WebSearch",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(chmod:*)",
+      "Bash(./tools/build-graph-cache.sh:*)"
+    ]
+  }
+}

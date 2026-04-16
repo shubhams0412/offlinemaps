@@ -1,0 +1,10 @@
+{
+  "java.import.exclusions": [
+    "**/android/**",
+    "**/flutter_tools/gradle/**",
+    "**/.flutter-plugins**",
+    "**/.dart_tool**"
+  ],
+  "java.project.importOnFirstTimeStartup": "disabled",
+  "java.configuration.updateBuildConfiguration": "interactive"
+}

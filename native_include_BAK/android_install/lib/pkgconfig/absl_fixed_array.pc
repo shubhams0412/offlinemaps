@@ -1,0 +1,12 @@
+prefix=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install
+exec_prefix=${prefix}
+libdir=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install/lib
+includedir=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install/include
+
+Name: absl_fixed_array
+Description: Abseil fixed_array library
+URL: https://abseil.io/
+Version: 20230125
+Requires: absl_compressed_tuple = 20230125, absl_algorithm = 20230125, absl_config = 20230125, absl_core_headers = 20230125, absl_dynamic_annotations = 20230125, absl_throw_delegate = 20230125, absl_memory = 20230125
+Libs: -L${libdir}  
+Cflags: -I${includedir} -Wno-float-conversion -Wno-implicit-float-conversion -Wno-implicit-int-float-conversion -Wno-unknown-warning-option -DNOMINMAX

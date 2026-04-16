@@ -1,0 +1,12 @@
+prefix=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install
+exec_prefix=${prefix}
+libdir=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install/lib
+includedir=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install/include
+
+Name: absl_random_internal_iostream_state_saver
+Description: Abseil random_internal_iostream_state_saver library
+URL: https://abseil.io/
+Version: 20230125
+Requires: absl_int128 = 20230125, absl_type_traits = 20230125
+Libs: -L${libdir}  
+Cflags: -I${includedir} -Wno-float-conversion -Wno-implicit-float-conversion -Wno-implicit-int-float-conversion -Wno-unknown-warning-option -DNOMINMAX

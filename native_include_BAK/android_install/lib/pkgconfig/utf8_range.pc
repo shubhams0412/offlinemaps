@@ -1,0 +1,11 @@
+prefix=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install
+exec_prefix=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install
+libdir=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install/lib
+includedir=/Users/testuser/Documents/IdeaProjects/offlinemaps/native_include/android_install/include
+
+Name: UTF8 Range
+Description: Google's UTF8 Library
+Version: 1.0
+Requires: absl_strings
+Libs: -L${libdir} -lutf8_validity -lutf8_range -pthread
+Cflags: -I${includedir}

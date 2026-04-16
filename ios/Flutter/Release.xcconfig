@@ -1,0 +1,12 @@
+#include? "Pods/Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"
+#include "Generated.xcconfig"
+
+// Keep C++ headers needed by the app (Boost, etc).
+// NOTE: `$(inherited)` comes first, so the Valhalla CocoaPod headers 
+// from `third_party/valhalla` will take precedence.
+// Use the real Valhalla, dependency headers, and generated proto headers.
+HEADER_SEARCH_PATHS = $(inherited) "${PROJECT_DIR}/../third_party/valhalla" "${PROJECT_DIR}/../build/vcpkg-device/arm64-ios/include" "${PROJECT_DIR}/../build/valhalla-ios-device/src"
+CLANG_CXX_LANGUAGE_STANDARD = c++20
+CLANG_CXX_LIBRARY = libc++
+GCC_ENABLE_CPP_EXCEPTIONS = YES
+GCC_ENABLE_CPP_RTTI = YES

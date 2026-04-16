@@ -1,0 +1,579 @@
+{
+    "version": 8,
+    "name": "Offline Maps Topo Light",
+    "metadata": {
+        "maputnik:renderer": "mlib"
+    },
+    "sources": {
+        "world-basemap": {
+            "type": "vector",
+            "url": "https://demotiles.maplibre.org/tiles/tiles.json",
+            "maxzoom": 6
+        },
+        "offline": {
+            "type": "vector",
+            "tiles": [
+                "http://127.0.0.1:8765/tiles/{z}/{x}/{y}.pbf"
+            ],
+            "minzoom": 0,
+            "maxzoom": 14
+        }
+    },
+    "glyphs": "http://127.0.0.1:8765/fonts/{fontstack}/{range}.pbf",
+    "sprite": "http://127.0.0.1:8765/sprites/sprite",
+    "layers": [
+        {
+            "id": "background",
+            "type": "background",
+            "paint": {
+                "background-color": "#E7E0D3"
+            }
+        },
+        {
+            "id": "world-countries-fill",
+            "type": "fill",
+            "source": "world-basemap",
+            "source-layer": "countries",
+            "maxzoom": 6,
+            "paint": {
+                "fill-color": "#E7E0D3",
+                "fill-opacity": 1.0
+            }
+        },
+        {
+            "id": "world-countries-outline",
+            "type": "line",
+            "source": "world-basemap",
+            "source-layer": "countries",
+            "maxzoom": 6,
+            "paint": {
+                "line-color": "#DCD0C0",
+                "line-width": {
+                    "stops": [
+                        [
+                            0,
+                            0.4
+                        ],
+                        [
+                            4,
+                            0.8
+                        ],
+                        [
+                            6,
+                            1.2
+                        ]
+                    ]
+                },
+                "line-opacity": 0.8
+            }
+        },
+        {
+            "id": "world-geolines",
+            "type": "line",
+            "source": "world-basemap",
+            "source-layer": "geolines",
+            "maxzoom": 4,
+            "paint": {
+                "line-color": "#DCD0C0",
+                "line-width": 0.6,
+                "line-opacity": 0.6
+            }
+        },
+        {
+            "id": "world-country-labels",
+            "type": "symbol",
+            "source": "world-basemap",
+            "source-layer": "centroids",
+            "minzoom": 2,
+            "maxzoom": 6,
+            "layout": {
+                "text-field": [
+                    "coalesce",
+                    [
+                        "get",
+                        "ABBREV"
+                    ],
+                    [
+                        "get",
+                        "NAME"
+                    ]
+                ],
+                "text-font": [
+                    "Open Sans Regular",
+                    "Arial Unicode MS Regular"
+                ],
+                "text-size": {
+                    "stops": [
+                        [
+                            2,
+                            10
+                        ],
+                        [
+                            4,
+                            12
+                        ],
+                        [
+                            6,
+                            14
+                        ]
+                    ]
+                }
+            },
+            "paint": {
+                "text-color": "#6B6156",
+                "text-halo-color": "#FFFFFF",
+                "text-halo-width": 1.2
+            }
+        },
+        {
+            "id": "landuse-forest",
+            "type": "fill",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Polygon"
+                ],
+                [
+                    "==",
+                    "landuse",
+                    "forest"
+                ]
+            ],
+            "paint": {
+                "fill-color": "#C8E6C9",
+                "fill-opacity": 0.8
+            }
+        },
+        {
+            "id": "water-area",
+            "type": "fill",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Polygon"
+                ],
+                [
+                    "==",
+                    "natural",
+                    "water"
+                ]
+            ],
+            "paint": {
+                "fill-color": "#A8D0E6"
+            }
+        },
+        {
+            "id": "contour-lines",
+            "type": "line",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "has",
+                    "elevation"
+                ]
+            ],
+            "paint": {
+                "line-color": "#C4B29E",
+                "line-width": 0.5,
+                "line-opacity": 0.6
+            }
+        },
+        {
+            "id": "building",
+            "type": "fill",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "minzoom": 13,
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "Polygon"
+                ],
+                [
+                    "has",
+                    "building"
+                ]
+            ],
+            "paint": {
+                "fill-color": "#DED6C8",
+                "fill-outline-color": "#C4BBAB",
+                "fill-opacity": 1.0
+            }
+        },
+        {
+            "id": "roads-minor-casing",
+            "type": "line",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "minzoom": 13,
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "in",
+                    "highway",
+                    "residential",
+                    "service",
+                    "unclassified"
+                ]
+            ],
+            "paint": {
+                "line-color": "#D1C9BB",
+                "line-width": {
+                    "stops": [
+                        [
+                            13,
+                            1
+                        ],
+                        [
+                            16,
+                            4
+                        ]
+                    ]
+                },
+                "line-opacity": 1.0
+            }
+        },
+        {
+            "id": "roads-minor",
+            "type": "line",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "minzoom": 13,
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "in",
+                    "highway",
+                    "residential",
+                    "service",
+                    "unclassified"
+                ]
+            ],
+            "paint": {
+                "line-color": "#FFFFFF",
+                "line-width": {
+                    "stops": [
+                        [
+                            13,
+                            0.5
+                        ],
+                        [
+                            16,
+                            2
+                        ]
+                    ]
+                },
+                "line-opacity": 1.0
+            }
+        },
+        {
+            "id": "roads-main-casing",
+            "type": "line",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "in",
+                    "highway",
+                    "primary",
+                    "secondary",
+                    "tertiary",
+                    "trunk",
+                    "motorway"
+                ]
+            ],
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "paint": {
+                "line-color": "#DDA23B",
+                "line-width": {
+                    "stops": [
+                        [
+                            8,
+                            2
+                        ],
+                        [
+                            12,
+                            4
+                        ],
+                        [
+                            16,
+                            9
+                        ]
+                    ]
+                },
+                "line-opacity": 1.0
+            }
+        },
+        {
+            "id": "roads-main",
+            "type": "line",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "filter": [
+                "all",
+                [
+                    "==",
+                    "$type",
+                    "LineString"
+                ],
+                [
+                    "in",
+                    "highway",
+                    "primary",
+                    "secondary",
+                    "tertiary",
+                    "trunk",
+                    "motorway"
+                ]
+            ],
+            "layout": {
+                "line-cap": "round",
+                "line-join": "round"
+            },
+            "paint": {
+                "line-color": "#FDCB6E",
+                "line-width": {
+                    "stops": [
+                        [
+                            8,
+                            1
+                        ],
+                        [
+                            12,
+                            2.5
+                        ],
+                        [
+                            16,
+                            6
+                        ]
+                    ]
+                },
+                "line-opacity": 1.0
+            }
+        },
+        {
+            "id": "place-labels",
+            "type": "symbol",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "minzoom": 3,
+            "filter": [
+                "any",
+                [
+                    "has",
+                    "name"
+                ],
+                [
+                    "has",
+                    "Name"
+                ],
+                [
+                    "has",
+                    "NAME"
+                ],
+                [
+                    "has",
+                    "alt_name"
+                ],
+                [
+                    "has",
+                    "addr:city"
+                ],
+                [
+                    "has",
+                    "label"
+                ],
+                [
+                    "has",
+                    "place"
+                ]
+            ],
+            "layout": {
+                "text-field": [
+                    "coalesce",
+                    [
+                        "get",
+                        "name"
+                    ],
+                    [
+                        "get",
+                        "Name"
+                    ],
+                    [
+                        "get",
+                        "NAME"
+                    ],
+                    [
+                        "get",
+                        "alt_name"
+                    ],
+                    [
+                        "get",
+                        "alt_name:en"
+                    ],
+                    [
+                        "get",
+                        "alt_name:gu"
+                    ],
+                    [
+                        "get",
+                        "addr:city"
+                    ],
+                    [
+                        "get",
+                        "addr:village"
+                    ],
+                    [
+                        "get",
+                        "label"
+                    ],
+                    [
+                        "get",
+                        "display_name"
+                    ],
+                    [
+                        "get",
+                        "place"
+                    ]
+                ],
+                "text-font": [
+                    "Open Sans Regular",
+                    "Arial Unicode MS Regular"
+                ],
+                "text-size": {
+                    "stops": [
+                        [
+                            4,
+                            10
+                        ],
+                        [
+                            8,
+                            12
+                        ],
+                        [
+                            12,
+                            15
+                        ],
+                        [
+                            16,
+                            20
+                        ]
+                    ]
+                },
+                "text-max-width": 10,
+                "text-padding": 8,
+                "text-anchor": "center",
+                "text-allow-overlap": false,
+                "text-ignore-placement": false
+            },
+            "paint": {
+                "text-color": "#3E3E3E",
+                "text-halo-color": "#FFFFFF",
+                "text-halo-width": 2,
+                "text-halo-blur": 0.5
+            }
+        },
+        {
+            "id": "road-names",
+            "type": "symbol",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "minzoom": 13,
+            "filter": [
+                "has",
+                "name"
+            ],
+            "layout": {
+                "symbol-placement": "line",
+                "text-field": [
+                    "get",
+                    "name"
+                ],
+                "text-font": [
+                    "Open Sans Regular"
+                ],
+                "text-size": 11,
+                "text-max-angle": 30,
+                "text-padding": 5
+            },
+            "paint": {
+                "text-color": "#5A5A5A",
+                "text-halo-color": "#FFFFFF",
+                "text-halo-width": 1
+            }
+        },
+        {
+            "id": "poi-icons",
+            "type": "symbol",
+            "source": "offline",
+            "source-layer": "gujarat",
+            "minzoom": 14,
+            "filter": [
+                "has",
+                "amenity"
+            ],
+            "layout": {
+                "icon-image": [
+                    "match",
+                    [
+                        "get",
+                        "amenity"
+                    ],
+                    "hospital",
+                    "hospital",
+                    "fuel",
+                    "fuel",
+                    "restaurant",
+                    "restaurant",
+                    "cafe",
+                    "cafe",
+                    "bank",
+                    "bank",
+                    "poi"
+                ],
+                "icon-size": 0.9,
+                "icon-allow-overlap": true,
+                "icon-ignore-placement": true
+            },
+            "paint": {
+                "icon-opacity": 0.95
+            }
+        }
+    ]
+}
